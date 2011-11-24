@@ -22,6 +22,12 @@
   </head>
   
   <style>
+  .eqn {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
   </style>
 
   <body style='display: none'>
@@ -46,207 +52,133 @@
       </article>
       
       <article>
-        <p>
-          This is a slide with just text. This is a slide with just text.
-          This is a slide with just text. This is a slide with just text.
-          This is a slide with just text. This is a slide with just text.
-        </p>
-        <p>
-          There is more text just underneath.
-        </p>
-      </article>
-
-      <article>
         <h3>
-          Simple slide with header and text
-        </h3>
-        <p>
-          This is a slide with just text. This is a slide with just text.
-          This is a slide with just text. This is a slide with just text.
-          This is a slide with just text. This is a slide with just text.
-        </p>
-        <p>
-          There is more text just underneath with a <code>code sample: 5px</code>.
-        </p>
-      </article>
-
-      <article class='smaller'>
-        <h3>
-          Simple slide with header and text (small font)
-        </h3>
-        <p>
-          This is a slide with just text. This is a slide with just text.
-          This is a slide with just text. This is a slide with just text.
-          This is a slide with just text. This is a slide with just text.
-        </p>
-        <p>
-          There is more text just underneath with a <code>code sample: 5px</code>.
-        </p>
-      </article>
-
-      <article>
-        <h3>
-          Slide with bullet points and a longer title, just because we
-          can make it longer
+          Today...
         </h3>
         <ul>
           <li>
-            Use this template to create your presentation
-          </li>
+            What is probabiliby, anyway?
+          </li><br>
           <li>
-            Use the provided color palette, box and arrow graphics, and
-            chart styles
-          </li>
+            What are classifiers?
+          </li><br>
           <li>
-            Instructions are provided to assist you in using this
-            presentation template effectively
-          </li>
+            So how do I build one? 
+          </li><br>
           <li>
-            At all times strive to maintain Google's corporate look and feel
-          </li>
+            Can you give me an example?
+          </li><br>
         </ul>
       </article>
 
-      <article>
-        <h3>
-          Slide with bullet points that builds
-        </h3>
-        <ul class="build">
-          <li>
-            This is an example of a list
-          </li>
-          <li>
-            The list items fade in
-          </li>
-          <li>
-            Last one!
-          </li>
-        </ul>
-
-        <div class="build">
-          <p>Any element with child nodes can build.</p>
-          <p>It doesn't have to be a list.</p>
-        </div>
-      </article>
-
-      <article class='smaller'>
-        <h3>
-          Slide with bullet points (small font)
-        </h3>
-        <ul>
-          <li>
-            Use this template to create your presentation
-          <li>
-            Use the provided color palette, box and arrow graphics, and
-            chart styles
-          <li>
-            Instructions are provided to assist you in using this
-            presentation template effectively
-          <li>
-            At all times strive to maintain Google's corporate look and feel
-        </ul>
-      </article>
-
-      <article>
-        <h3>
-          Slide with a table
-        </h3>
-        
-        <table>
-          <tr>
-            <th>
-              Name
-            <th>
-              Occupation
-          <tr>
-            <td>
-              Luke Mahé
-            <td>
-              V.P. of Keepin’ It Real
-          <tr>
-            <td>
-              Marcin Wichary
-            <td>
-              The Michael Bay of Doodles
-        </table>
-      </article>
-      
-      <article class='smaller'>
-        <h3>
-          Slide with a table (smaller text)
-        </h3>
-        
-        <table>
-          <tr>
-            <th>
-              Name
-            <th>
-              Occupation
-          <tr>
-            <td>
-              Luke Mahé
-            <td>
-              V.P. of Keepin’ It Real
-          <tr>
-            <td>
-              Marcin Wichary
-            <td>
-              The Michael Bay of Doodles
-        </table>
-      </article>
-      
-      <article>
-        <h3>
-          Styles
-        </h3>
-        <ul>
-          <li>
-            <span class='red'>class="red"</span>
-          <li>
-            <span class='blue'>class="blue"</span>
-          <li>
-            <span class='green'>class="green"</span>
-          <li>
-            <span class='yellow'>class="yellow"</span>
-          <li>
-            <span class='black'>class="black"</span>
-          <li>
-            <span class='white'>class="white"</span>
-          <li>
-            <b>bold</b> and <i>italic</i>
-        </ul>
-      </article>
-      
       <article>
         <h2>
-          Segue slide
+          Probability
         </h2>
       </article>
 
       <article>
         <h3>
-          Slide with an image
+          Probability - Basics
         </h3>
         <p>
-          <img style='height: 500px' src='images/example-graph.png'>
+          We use probability to describe the <b>likelihood</b> of an event
         </p>
-        <div class='source'>
-          Source: Sergey Brin
-        </div>
+        <ul>
+          <li>
+            A <b>sample space</b> of possible things&nbsp
+            <img src="http://latex.codecogs.com/png.latex?\huge&space;\inline&space;{\color{Gray}&space;\Omega&space;}">
+          </li>
+          <li>
+            Individual outcomes from the sample space is&nbsp
+            <img src="http://latex.codecogs.com/png.latex?\huge&space;\inline&space;{\color{Gray}&space;\omega&space;}">
+          </li>
+          <li>
+            Probability is a function that assigns likelihood to each 
+            &nbsp<img src="http://latex.codecogs.com/png.latex?\huge&space;\inline&space;{\color{Gray}&space;\omega&space;}">
+          </li>
+          <li>
+            A <b>probability function</b> must satisfy 
+            <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} f\left(\omega\right)\in\left[0,1\right]\ \forall\omega\in\Omega}" title="\huge {\color{Gray} f\left(\omega\right)\in\left[0,1\right]\ \forall\omega\in\Omega}" /> 
+            <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} \sum_{\omega\in\Omega}f\left(\omega\right)=1}" title="\LARGE {\color{Gray} \sum_{\omega\in\Omega}f\left(\omega\right)=1}" />
+          </li>
+          <li>
+            An <b>event</b> is a set of outcomes. 
+            <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(A\right)=\sum_{\omega\in A}P\left(w\right)}" title="\LARGE {\color{Gray} P\left(A\right)=\sum_{\omega\in A}P\left(w\right)}" />
+          </li>
+        </ul>
       </article>
 
       <article>
         <h3>
-          Slide with an image (centered)
+          Probability - Condition, Independence
         </h3>
         <p>
-          <img class='centered' style='height: 500px' src='images/example-graph.png'>
+          <b>Conditional probability</b>: probability of event A, given B happened 
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(A|B\right)=\frac{P\left(A,B\right)}{P\left(B\right)}=\frac{P\left(B|A\right)P\left(A\right)}{P\left(B\right)} }" title="\LARGE {\color{Gray} P\left(A|B\right)=\frac{P\left(A,B\right)}{P\left(B\right)}=\frac{P\left(B|A\right)P\left(A\right)}{P\left(B\right)} }" />
+          <center>
+          <img src="cond_1.png"> &nbsp &nbsp
+          <img src="cond_2.png">
+          </center>
         </p>
-        <div class='source'>
-          Source: Larry Page
-        </div>
+        <p>
+          <b>Independence</b>: value of event B does not affect event A 
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(A|B\right)=P\left(A\right) }" title="\LARGE {\color{Gray} P\left(A|B\right)=P\left(A\right) }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray}P\left(A,B\right)=P\left(A\right)P\left(B\right)}" title="\LARGE {\color{Gray}P\left(A,B\right)=P\left(A\right)P\left(B\right)}" />
+        </p>
       </article>
 
+      <article>
+        <h2>
+          Bayesian Networks, Naive Bayes
+        </h2>
+      </article>
+
+      <article>
+        <h3>
+          Classifier
+        </h3>
+        <ul>
+          <li>
+            Define categories, or <b>classes</b> (eg. "positive", "negative")
+          </li>
+          <li>
+            Class is not observable, infer from what we <em>can</em> observe
+          </li>
+        </ul>
+        <p>
+          A <b>classifier</b> takes in some observed value, guesses a class <br><br>
+          <center>
+          <img src="classifier.png">
+          </center>
+        </p>
+        <p>
+          We will build a <b>Naive Bayes</b> classifier.
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          Bayesian Networks
+        </h3>
+        <ul>
+          <li>
+            Graphical representation of a <b>probability model</b>
+          </li>
+          <li>
+            Nodes represent variables, arrows represent causality
+          </li>
+          <li>
+            Each node has a <b>conditional probability distribution</b> conditioned on its parents. 
+          </li>
+        </ul>
+        <p>
+          <center>
+          <img width=450 src="http://upload.wikimedia.org/wikipedia/en/thumb/0/0e/SimpleBayesNet.svg/500px-SimpleBayesNet.svg.png" />
+          </center>
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(X\right)=\prod_{x\in X}P\left(x_{i}|pa\left(X_{i}\right)\right)}" title="\LARGE {\color{Gray} P\left(X\right)=\prod_{x\in X}P\left(x_{i}|pa\left(X_{i}\right)\right)}" />
+        </p>
+      </article>
       <article class='fill'>
         <h3>
           Image filling the slide (with optional header)

@@ -12,6 +12,23 @@
   URL: http://code.google.com/p/html5slides/
 -->
 
+
+<!--
+
+  These slides were created for the H@B workshop on 12/1.
+  
+  They brifly cover probability, bayes nets, naive bayes, and 
+  information gain. 
+
+  "Building" is OFF by default for easy viewing. Run "present()" in 
+  a js console before presentations to turn it on.
+
+  Yes, for those of you who disapprove I've used <center> tags 
+  very liberally. I was lazy to write more CSS
+
+-->
+
+
 <html>
   <head>
     <title>H@B Artificial Intelligence Workshop</title>
@@ -19,15 +36,21 @@
     <meta charset='utf-8'>
     <script
       src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+
   </head>
   
   <style>
-  .eqn {
-    display: block;
-    margin: auto;
-    margin-top: 25px;
-    margin-bottom: 25px;
-  }
+    .eqn {
+      display: block;
+      margin: auto;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+    .eqn-left {
+      display: block;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
   </style>
 
   <body style='display: none'>
@@ -143,13 +166,16 @@
             Define categories, or <b>classes</b> (eg. "positive", "negative")
           </li>
           <li>
-            Class is not observable, infer from what we <em>can</em> observe
+            Class is not observable, infer from what we <em>can</em> observe 
+          </li>
+          <li>
+            Pick observations that give us insight, use as <b>features</b>
           </li>
         </ul>
         <p>
-          A <b>classifier</b> takes in some observed value, guesses a class <br><br>
+          A <b>classifier</b> takes in features, guesses a class <br><br>
           <center>
-          <img src="classifier.png">
+          <img src="classifier.png" width=520>
           </center>
         </p>
         <p>
@@ -179,112 +205,196 @@
           <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(X\right)=\prod_{x\in X}P\left(x_{i}|pa\left(X_{i}\right)\right)}" title="\LARGE {\color{Gray} P\left(X\right)=\prod_{x\in X}P\left(x_{i}|pa\left(X_{i}\right)\right)}" />
         </p>
       </article>
-      <article class='fill'>
-        <h3>
-          Image filling the slide (with optional header)
-        </h3>
-        <p>
-          <img src='images/example-cat.jpg'>
-        </p>
-        <div class='source white'>
-          Source: Eric Schmidt
-        </div>
-      </article>
 
       <article>
         <h3>
-          This slide has some code
+          Naive Bayes Classifier - Definition
         </h3>
-        <section>
-        <pre>
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }
-  }
-&lt;/script&gt;
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-  u { color: 'umber' }
-&lt;/style&gt;
-</pre>
-        </section>
-      </article>
-      
-      <article class='smaller'>
-        <h3>
-          This slide has some code (small font)
-        </h3>
-        <section>
-        <pre>
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }
-  }
-&lt;/script&gt;
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-  u { color: 'umber' }
-&lt;/style&gt;
-</pre>
-        </section>
-      </article>
-      
-      <article>
-        <q>
-          The best way to predict the future is to invent it.
-        </q>
-        <div class='author'>
-          Alan Kay
-        </div>
-      </article>
-      
-      <article class='smaller'>
-        <q>
-          A distributed system is one in which the failure of a computer 
-          you didn’t even know existed can render your own computer unusable.
-        </q>
-        <div class='author'>
-          Leslie Lamport
-        </div>
-      </article>
-      
-      <article class='nobackground'>
-        <h3>
-          A slide with an embed + title
-        </h3>
-        
-        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-      </article>
-
-      <article class='nobackground'>
-        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-      </article>
-
-      <article class='fill'>
-        <h3>
-          Full-slide embed with (optional) slide title on top
-        </h3>
-        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-      </article>
-      
-      <article>
-        <h3>
-          Thank you!
-        </h3>
-        
         <ul>
           <li>
-            <a href='http://www.google.com'>google.com</a>
+            Classifier using Bayesian Networks
+          </li>
+          <li>
+            One root node, the class 
+          </li>
+          <li>
+            Root node points to many child nodes, the features
+          </li>
+          <li>
+            "Naive": all features are independent of each other
+          </li>
+        </ul>
+        <p>
+          <br>
+          <center>
+          <img src="NB.png" width=600/>
+          </center>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          Naive Bayes Classifier - Inference
+        </h3>
+        <p>
+          Ok, I have a vector of features. <b>How do I pick the class?</b>
+        </p>
+        <p>
+          Answer: Pick the class c with the highest
+        </p>
+        <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=c|F_{1},\ldots,F_{n}\right)}" title="\LARGE {\color{Gray} P\left(C=c|F_{1},\ldots,F_{n}\right)}" />
+        <p>
+          How do I find this conditonal probability?
+          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" />
+          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" />
+          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" />
+          <img class=eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C\right)\prod_{F}P\left(F_{i}|C\right)}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C\right)\prod_{F}P\left(F_{i}|C\right)}" />
+        </p>
+      </article>
+      
+      <article>
+        <h3>
+          Our Classifier
+        </h3>
+        <p>
+          We will build a classifier with two classes, and "bag-of-words" style <b>binary features</b>. 
+        </p>
+        <p>
+          <center>
+          <img src="sentiment_ex.png" />
+          </center>
+        </p>
+        <p>
+          "The concert was great."
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=+|G=1,H=0,T=1\right)=0.5*0.8*0.8*0.5=0.16 }" title="\LARGE {\color{Gray} P\left(C=+|G=1,H=0,T=1\right)=0.5*0.8*0.8*0.5=0.16 }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=-|G=1,H=0,T=1\right)=0.5*0.3*0.1*0.5=0.0075 }" title="\LARGE {\color{Gray} P\left(C=-|G=1,H=0,T=1\right)=0.5*0.3*0.1*0.5=0.0075 }" />
+        </p>
+        <div style="position:absolute; bottom:180px; right: 100px; padding: 5px; border:solid gray 1px">
+          POSITIVE
+        <div>
+
+      </article>
+
+      <article>
+        <h3>
+          Our Classifier
+        </h3>
+        <p>
+          We will be building a Naive Bayes classifier with two classes and <b>binary features</b>.
+        </p>
+        <p>
+          <center>
+          <img src="sentiment_ex.png" />
+          </center>
+        </p>
+        <p>
+          "I hate doing the dishes."
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=+|G=0,H=1,T=1\right)=0.5*0.2*0.2*0.5=0.01 }" title="\LARGE {\color{Gray} P\left(C=+|G=0,H=1,T=1\right)=0.5*0.2*0.2*0.5=0.01 }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=-|G=0,H=1,T=1\right)=0.5*0.7*0.9*0.5=0.1575 }" title="\LARGE {\color{Gray} P\left(C=-|G=0,H=1,T=1\right)=0.5*0.7*0.9*0.5=0.1575 }" />
+        </p>
+        <div style="position:absolute; bottom:180px; right: 100px; padding: 5px; border:solid gray 1px">
+          NEGATIVE
+        <div>
+
+      </article>
+
+      <article>
+        <h3>
+          Our Classifier
+        </h3>
+        <p>
+          We will be building a Naive Bayes classifier with two classes and <b>binary features</b>.
+        </p>
+        <p>
+          <center>
+          <img src="sentiment_ex.png" />
+          </center>
+        </p>
+        <p>
+          "I ate cookies."
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=+|G=0,H=0,T=0\right)=0.5*0.2*0.8*0.5=0.04}" title="\LARGE {\color{Gray} P\left(C=+|G=0,H=0,T=0\right)=0.5*0.2*0.8*0.5=0.04}" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=-|G=0,H=0,T=0\right)=0.5*0.7*0.1*0.5=0.0175 }" title="\LARGE {\color{Gray} P\left(C=-|G=0,H=0,T=0\right)=0.5*0.7*0.1*0.5=0.0175 }" />
+        </p>
+        <div style="position:absolute; bottom:150px; right: 100px; padding: 5px; border:solid gray 1px">
+          DON'T KNOW (not confident)
+        <div>
+      </article>
+
+      <article>
+        <h3>
+          A few more things...
+        </h3>
+        <ul>
+          <li>
+            When we have a lot of features, multiplying probabilities creates underflow problems.
+          </li>
+          <li>
+            Use sum of log probabilities. (OK, since log is monotonic)
+            <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" title="\LARGE {\color{Gray} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" />
+          </li>
+        </ul>
+        <p>
+          <h3> Let's build it! DEMO. </h3>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          But how do we pick features?
+        </h3>
+        <p> 
+          As we saw in the example, "the" was not a very useful feature.
+          <b>But how do we know which one is useful?</b>
+        </p>
+        <p>
+          Answer: we will use <b>entropy</b> and <b>information gain</b>
+        </p>
+        <p>
+          <b>Entropy</b> is a measure of unpredictability. Given a set S, the entropy is 
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" title="\LARGE {\color{Gray} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" />
+        </p>
+        <p>
+          <b>Information gain</b> tells us the <em>improvement</em> in the entropy of a set S by splitting it into k small subsets. 
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" title="\LARGE {\color{Gray} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" />
+          eg. split into "positive" and "negative" categories
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          But how do we pick features?
+        </h3>
+        <p>
+          Information gain gives a measure of how "informative" a feature is.
+        </p>
+        <p>
+          So: pick features with the <b>highest</b> information gain.
+        </p>
+        <p>
+          The entropy of a boolean distribution (a Bernoulli) is
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" title="\LARGE {\color{Gray} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" />
+          Information gain of a particular word is 
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?{\color{Gray} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" title="{\color{Gray} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" />
+          <br>
+          <em>
+            If I split my tweets into two sets (+ve/-ve), which words am I most likely to see in one
+            but not in the other?
+          </em>
+          </ul>
+        </p>
+      </article>
+
+      <article>
+        <h3> Where can I learn more? </h3>
+        <ul>
+          <li>
+            Wikipedia:
+              <a href=""></a>
+              <a href=""></a>
+              <a href=""></a>
+              <a href=""></a>
+              <a href=""></a>
+          </li>
         </ul>
       </article>
 

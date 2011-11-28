@@ -29,5 +29,9 @@ if __name__ == "__main__":
         tweets.close()
 
 """
-curl --data-binary @tweets.txt "http://twittersentiment.appspot.com/api/bulkClassify" > sentiment.txt
+curl --data-binary @tweets.txt "http://twittersentiment.appspot.com/api/bulkClassify" > sentiment.txt;
+cat sentiment.txt | grep "\"0\"" > negative.txt;
+cat sentiment.txt | grep "\"4\"" > positive.txt;
+cp negative.txt ../pyAI/examples/;
+cp positive.txt ../pyAI/examples/
 """

@@ -8,12 +8,13 @@ class Vector(dict):
 
     def __init__(self, *args, **kwargs):
         dict.__init__(self, *args, **kwargs)
+        self.default = 0
 
     def __getitem__(self, key):
         if key in self:
             return dict.__getitem__(self, key)
         else:
-            return 0
+            return self.default
 
     def normalize(self):
         total = self.total_value() * 1.0

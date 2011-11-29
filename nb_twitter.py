@@ -4,7 +4,6 @@ import re
 import numpy as np
 
 from stopwords import stopwords
-
 new_stop_words = set()
 for word in stopwords:
     if "'" in word:

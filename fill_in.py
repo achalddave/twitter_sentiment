@@ -19,6 +19,19 @@ stopwords = stopwords.union(new_stop_words)
 
 # Sanitizer
 def sanitize(text):
+    """
+    clean up:
+        1. split a string into a list of words
+        2. remove all @ handles
+        3. remove all hash tags
+        4. remove all liks
+        5. remove all stopwords
+        6. throw away punctuation, except smiley faces
+        7. make the final vector of words a set
+
+    @args:
+        text --> a string
+    """
     words = text.split()
     words = [word for word in words if "@" not in word]
     words = [word for word in words if "#" not in word] 
@@ -39,10 +52,21 @@ def sanitize(text):
 
 # Info gain formula
 def info_bernuilli(p):
+    """
+    computes the entropy of a Bernuilli distr
+
+    @args:
+        p --> probability p in Bernuilli(p)
+    """
     return -p*np.log(p)-(1-p)*np.log(1-p)
 
 # 250 features with highest info gain
 def select_features():
+    """
+    Selects 250 words with the highest information gain. Refer to 
+    slides for details
+    """
+
     positives = Vector()
     negatives = Vector()
     both = Vector()
@@ -84,60 +108,61 @@ def select_features():
 
 #==================
 
+# 
+# HEY LOOK AT ME I AM THE MOST INTERESTING PART
+#
+
+
 class NB(object):
     
     def __init__(self):
-        self.classes = ["+", "-"]
-        self.features = set()
-        feature_list = open("data/features.txt")
-        for line in feature_list:
-            self.features.add(line.strip().lower())
-        self.cpds = {"+": Vector(),
-                     "-": Vector()}
-        for vector in self.cpds.values():
-            vector.default = 1
-        self.priors = {"+": 0.6, "-": 0.4}
+        """
+        Should do:
+            1. define the possible classes
+            2. define features
+            3. define CPDs
+            4. define priors
+        """
+
+        # FILL ME IN!
 
     def learn_cpd(self, cls, tweets):
-        counter = self.cpds[cls]
-        total = 0.0
-        for tweet in tweets:
-            total += 1
-            tweet = sanitize(tweet)
-            for word in tweet:
-                if word in self.features:
-                    counter[word] += 1
+        """
+        Should do:
+            learn the CPD for a given class
 
-        for key in counter:
-            counter[key] = counter[key] / total
-        
-        counter.default = 1/total
-        print "Total %s tweets: %s" % (cls, total)
+        @args:
+            cls --> a string, "+" or "-" 
+            tweets --> an iterable of tweets (a file object, list, etc)
+        """
+
+        # FILL ME IN!
 
     def posterior(self, cls, sanitized_tweet):
-        p = log(self.priors[cls])
-        cpd = self.cpds[cls]
-        for feature in self.features:
-            if feature in sanitized_tweet:
-                p += log(cpd[feature])
-            else:
-                p += log(1 - cpd[feature])
-        return p
+        """
+        Computes the posterior of a sanitized tweet, P(C|tweet)
 
+        @args:
+            cls --> a string, "+" or "-". determines CPD to use
+            sanitized_tweet --> a set of words in the tweet
+        """
+
+        # FILL ME IN!
 
     def classify(self, tweet):
-        tweet = sanitize(tweet)
-        posteriors = {}
-        for cls in self.classes:
-            posteriors[cls] = self.posterior(cls, tweet)
-        pos = posteriors["+"]
-        neg = posteriors["-"]
-        if pos > log(2) + neg:
-            return "+"
-        elif neg > log(2) + pos:
-            return "-"
-        else:
-            return "~"
+        """
+        Given a text, classify its sentiment. Picks the class with the largest posterior.
+      
+        However, if we are not confident, ie if not P(C1|tweet) < 2*P(C2|tweet), 
+        then we refuse to classify, and return neutral, "~". 
+
+        @args:
+            tweet --> a string, text of the tweet
+        """
+
+        # FILL ME IN!
+
+# ===================
 
 
 def eval_performance(n):
@@ -161,15 +186,18 @@ def eval_performance(n):
 def classify_text(n, txt):
     print "That text is: %s" % n.classify(txt)
 
-
-
 def main():
     n = NB()
     n.learn_cpd("+", open("data/train_pos.txt"))
     n.learn_cpd("-", open("data/train_neg.txt"))
     if "--verify" in sys.argv:
         eval_performance(n)
+    elif "--features" in sys.argv:
+        select_features()
     else:
+        if len(sys.argv) < 2:
+            print "Not enough args. Provide text as argument")
+            return -1
         classify_text(n, sys.argv[1])
 
 if __name__ == "__main__":

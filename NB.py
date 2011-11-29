@@ -1,8 +1,14 @@
+import sys
 import re
-
-from Vector import Vector
+import numpy as np
 from numpy import log
 
+from Vector import Vector
+
+
+# ==== Cleaning Text ===
+
+# Load stopwords
 from stopwords import stopwords
 new_stop_words = set()
 for word in stopwords:
@@ -11,6 +17,7 @@ for word in stopwords:
 stopwords = stopwords.union(new_stop_words)
 
 
+# Sanitizer
 def sanitize(text):
     words = text.split()
     words = [word for word in words if "@" not in word]
@@ -25,12 +32,64 @@ def sanitize(text):
                         and word.lower() != "rt"}
     return words
 
+# ===============
+
+
+# ==== Feature Selection ====
+
+# Info gain formula
+def info_bernuilli(p):
+    return -p*np.log(p)-(1-p)*np.log(1-p)
+
+# 250 features with highest info gain
+def select_features():
+    positives = Vector()
+    negatives = Vector()
+    both = Vector()
+
+    documents = 0.0
+    p = 0.0
+    n = 0.0
+
+    f = open("data/train_pos.txt")
+    for line in f:
+        for word in sanitize(line):
+            positives[word] += 1
+            both[word] += 1
+            documents += 1
+            p += 1
+    f.close()
+
+    f = open("data/train_neg.txt")
+    for line in f:
+        for word in sanitize(line):
+            negatives[word] += 1
+            both[word] += 1
+            documents += 1
+            n += 1
+    f.close()
+
+    features = []
+    for word in both:
+        p_both = both[word] / documents
+        p_pos = positives[word] / p or 0.001/p
+        p_neg = negatives[word] / n or 0.001/n
+        gain = info_bernuilli(p_both) \
+                - p/documents * info_bernuilli(p_pos) \
+                - n/documents * info_bernuilli(p_neg)
+        features.append((word, gain))
+
+    for word in [w[0] for w in sorted(features, key=lambda x: -x[1])[:250]]:
+        print word
+
+#==================
+
 class NB(object):
     
     def __init__(self):
         self.classes = ["+", "-"]
         self.features = set()
-        feature_list = open("features.txt")
+        feature_list = open("data/features.txt")
         for line in feature_list:
             self.features.add(line.strip().lower())
         self.cpds = {"+": Vector(),
@@ -73,7 +132,6 @@ class NB(object):
             posteriors[cls] = self.posterior(cls, tweet)
         pos = posteriors["+"]
         neg = posteriors["-"]
-
         if pos > log(2) + neg:
             return "+"
         elif neg > log(2) + pos:
@@ -81,15 +139,38 @@ class NB(object):
         else:
             return "~"
 
-if __name__ == "__main__":
-    n = NB()
-    n.learn_cpd("+", open("positive2.txt"))
-    n.learn_cpd("-", open("negative2.txt"))
+
+def eval_performance(n):
     w = 0
     t = 0
-    for tweet in open("positive2.txt"):
+    for tweet in open("data/verify_pos.txt"):
         t += 1.0
         if "+" != n.classify(tweet):
             w += 1.0
-    print w/t
+    for tweet in open("data/verify_neg.txt"):
+        t += 1.0
+        if "-" != n.classify(tweet):
+            w += 1.0
+    for tweet in open("data/verify_neutral.txt"):
+        t += 1.0
+        if "~" != n.classify(tweet):
+            w += 1.0
 
+    print "Error: %s" % (w/t)
+
+def classify_text(n, txt):
+    print "That text is: %s" % n.classify(txt)
+
+
+
+def main():
+    n = NB()
+    n.learn_cpd("+", open("data/train_pos.txt"))
+    n.learn_cpd("-", open("data/train_neg.txt"))
+    if "--verify" in sys.argv:
+        eval_performance(n)
+    else:
+        classify_text(n, sys.argv[1])
+
+if __name__ == "__main__":
+    main()

@@ -189,7 +189,7 @@ class NB(object):
         neg = posteriors["-"]
         if pos > log(2) + neg:
             return "+"
-        elif neg > log(2) + pos:
+        elif neg > log(3) + pos:
             return "-"
         else:
             return "~"

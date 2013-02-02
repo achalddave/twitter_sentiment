@@ -4,8 +4,13 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
+
 .eqn-left {
   display: block;
   margin-top: 25px;
   margin-bottom: 25px;
+}
+
+.definition {
+  font-weight : 800;
 }

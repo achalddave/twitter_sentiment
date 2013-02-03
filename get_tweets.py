@@ -1,37 +1,23 @@
 import sys
-import urllib
-import json
-import HTMLParser
+sys.path.insert(0, 'python-twitter/')
 
-URL = "http://search.twitter.com/search.json?q=%s&rpp=100&lang=en"
-PARSER = HTMLParser.HTMLParser()
+import twitter
 
-def get_tweets(keyword):
-    req = URL % urllib.quote(keyword)
-    print "Loading %s" % req
-    res = urllib.urlopen(req)
-    parsed = json.load(res)
-    texts = get_texts(parsed)
-    return texts
+api = twitter.Api(consumer_key="ElptdK9AGjxOBuORbiuTQ", consumer_secret="iufJBk1qhX84VVeCeeqeOJrVgDkqmtiVobNTpMKUA", 
+    access_token_key="370357185-yFfM8KRTOLuQJqfaURThsTN53clQK5oxAyTbvmb0", access_token_secret="1nSEOq2a6STHJm4gIVObMI0bkoL6cG8zH7n0qQ2bKc")
 
-def get_texts(parsed):
-    return [PARSER.unescape(p["text"]).encode("utf8").strip() for p in parsed["results"]]
+#to use this, type "sudo pip install python-twitter" first
+
+#api = twitter.Api()
+
+def get_tweets():
+    statuses = api.GetSearch("a")
+    #statuses = api.GetPublicTimeline()
+    text = []
+    for s in statuses:
+        text.append(s.text)
+        #print s.GetText()
+    return text
 
 if __name__ == "__main__":
-    if len(sys.argv) < 1:
-        print "no arg"
-    else:
-        texts = get_tweets(" ".join(sys.argv[1:]))
-        tweets = open("tweets.txt", "a")
-        for text in texts:
-            tweets.write(text)
-            tweets.write("\n")
-        tweets.close()
-
-"""
-curl --data-binary @tweets.txt "http://twittersentiment.appspot.com/api/bulkClassify" > sentiment.txt;
-cat sentiment.txt | grep "\"0\"" > negative.txt;
-cat sentiment.txt | grep "\"4\"" > positive.txt;
-cp negative.txt ../pyAI/examples/;
-cp positive.txt ../pyAI/examples/
-"""
+    get_tweets()

@@ -77,7 +77,7 @@
             How do Bayesian networks work?
           </li><br>
           <li>
-            What some examples of Bayesian Networks? <br>
+            What are some examples of Bayesian Networks? <br>
               <ul>
                 <li> Naive Bayes Classifier</li>
                 <li> Markov chains </li>
@@ -85,7 +85,7 @@
           </li><br>
           <li>
             Can you give me an example?
-          </li><br>
+          </li>
         </ul>
       </article>
 
@@ -122,17 +122,28 @@
           Probability - Condition, Independence
         </h3>
         <p>
-          <b>Conditional probability</b>: probability of event A, given B happened 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(A|B\right)=\frac{P\left(A,B\right)}{P\left(B\right)}=\frac{P\left(B|A\right)P\left(A\right)}{P\left(B\right)} }" title="\LARGE {\color{Gray} P\left(A|B\right)=\frac{P\left(A,B\right)}{P\left(B\right)}=\frac{P\left(B|A\right)P\left(A\right)}{P\left(B\right)} }" />
-          <center>
-          <img src="cond_1.png"> &nbsp &nbsp
-          <img src="cond_2.png">
-          </center>
+          By example:
         </p>
         <p>
-          <b>Independence</b>: value of event B does not affect event A 
+          Event A: Ms. Pacman gets an A in 61B
+        </p>
+        <p>
+          Event B: Professor Hilfinger is teaching 61B
+        </p>
+        <p>
+          <span class="definition">Conditional probability</span>: probability
+          of event A, given B happened <img class="eqn"
+          src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray}
+          P\left(A|B\right)=\frac{P\left(A\cap B\right)}{P\left(B\right)}}"
+          title="\LARGE {\color{Gray}
+          P\left(A|B\right)=\frac{P\left(A,B\right)}{P\left(B\right)}=\frac{P\left(B|A\right)P\left(A\right)}{P\left(B\right)}
+          }" />
+        </p>
+        <p>
+          <span class="definition">Independence</span>: When B doesn't
+          influence the probability of A (and vice versa), A and B are
+          independent.
           <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(A|B\right)=P\left(A\right) }" title="\LARGE {\color{Gray} P\left(A|B\right)=P\left(A\right) }" />
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray}P\left(A,B\right)=P\left(A\right)P\left(B\right)}" title="\LARGE {\color{Gray}P\left(A,B\right)=P\left(A\right)P\left(B\right)}" />
         </p>
       </article>
 

@@ -213,9 +213,8 @@
           <img class="center" width=450 src="http://upload.wikimedia.org/wikipedia/en/thumb/0/0e/SimpleBayesNet.svg/500px-SimpleBayesNet.svg.png" />
           <ul>
             <li>
-              The probability of any variable X is the product of its probabilities
-              conditioned on all the parents (any variable Y such that there is an
-              arrow from Y to X).
+              The probability of any variable is the product of its probabilities
+              conditioned on all its parents.
             </li>
             <li>
               Here, for example:
@@ -230,16 +229,16 @@
         </h3>
         <ul>
           <li>
-            Classifier using Bayesian Networks
+            <span class="definition">Naive Bayes</span> classifier, using Bayesian networks
           </li>
           <li>
-            One root node, the class 
+            One <i>root</i> node, which is the <i>class</i> (e.g. "spam or not")
           </li>
           <li>
-            Root node points to many child nodes, the features
+          Root node points to many <i>child</i> nodes, the <i>features</i>
           </li>
           <li>
-            "Naive": all features are independent of each other
+            A little advanced: What does "naive" mean?
           </li>
         </ul>
         <p>

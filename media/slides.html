@@ -136,17 +136,16 @@
         <p>
           <span class="definition">Conditional probability</span>: probability
           of event A, given B happened <img class="eqn"
-          src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray}
+          src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black}
           P\left(A|B\right)=\frac{P\left(A\cap B\right)}{P\left(B\right)}}"
-          title="\LARGE {\color{Gray}
-          P\left(A|B\right)=\frac{P\left(A,B\right)}{P\left(B\right)}=\frac{P\left(B|A\right)P\left(A\right)}{P\left(B\right)}
-          }" />
+          title="\LARGE {\color{Black}
+          P\left(A|B\right)=\frac{P\left(A\cap B\right)}{P\left(B\right)}}" />
         </p>
         <p>
           <span class="definition">Independence</span>: When B doesn't
           influence the probability of A (and vice versa), A and B are
           independent.
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(A|B\right)=P\left(A\right) }" title="\LARGE {\color{Gray} P\left(A|B\right)=P\left(A\right) }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(A|B\right)=P\left(A\right) }" title="\LARGE {\color{Black} P\left(A|B\right)=P\left(A\right) }" />
         </p>
       </article>
 
@@ -198,17 +197,30 @@
             Graphical representation of a <b>probability model</b>
           </li>
           <li>
-            Nodes represent variables, arrows represent causality
+            The circles, or <span class="definition">nodes</span>, represent variables
           </li>
           <li>
-            Each node has a <b>conditional probability distribution</b> conditioned on its parents. 
+            The arrow notes that a variable "influences" another
           </li>
         </ul>
+        <img class="center" width=450 src="http://upload.wikimedia.org/wikipedia/en/thumb/0/0e/SimpleBayesNet.svg/500px-SimpleBayesNet.svg.png" />
+      </article>
+      <article>
+        <h3>
+          Bayesian Networks
+        </h3>
         <p>
-          <center>
-          <img width=450 src="http://upload.wikimedia.org/wikipedia/en/thumb/0/0e/SimpleBayesNet.svg/500px-SimpleBayesNet.svg.png" />
-          </center>
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(X\right)=\prod_{x\in X}P\left(x_{i}|pa\left(X_{i}\right)\right)}" title="\LARGE {\color{Gray} P\left(X\right)=\prod_{x\in X}P\left(x_{i}|pa\left(X_{i}\right)\right)}" />
+          <img class="center" width=450 src="http://upload.wikimedia.org/wikipedia/en/thumb/0/0e/SimpleBayesNet.svg/500px-SimpleBayesNet.svg.png" />
+          <ul>
+            <li>
+              The probability of any variable X is the product of its probabilities
+              conditioned on all the parents (any variable Y such that there is an
+              arrow from Y to X).
+            </li>
+            <li>
+              Here, for example:
+            </li>
+              <img class="eqn center" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(G\right) = P\left(G | S\right) * P\left(G | R\right)}" title="\LARGE {\color{Black} P\left(G\right) = P\left(G | S\right) * P\left(G | R\right)}" />
         </p>
       </article>
 
@@ -248,13 +260,13 @@
         <p>
           Answer: Pick the class c with the highest
         </p>
-        <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=c|F_{1},\ldots,F_{n}\right)}" title="\LARGE {\color{Gray} P\left(C=c|F_{1},\ldots,F_{n}\right)}" />
+        <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=c|F_{1},\ldots,F_{n}\right)}" title="\LARGE {\color{Black} P\left(C=c|F_{1},\ldots,F_{n}\right)}" />
         <p>
           How do I find this conditonal probability?
-          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" />
-          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" />
-          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" />
-          <img class=eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C\right)\prod_{F}P\left(F_{i}|C\right)}" title="\LARGE {\color{Gray} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C\right)\prod_{F}P\left(F_{i}|C\right)}" />
+          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" />
+          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" />
+          <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" title="\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" />
+          <img class=eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C\right)\prod_{F}P\left(F_{i}|C\right)}" title="\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C\right)\prod_{F}P\left(F_{i}|C\right)}" />
         </p>
       </article>
       
@@ -272,8 +284,8 @@
         </p>
         <p>
           "The concert was great."
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=+|G=1,H=0,T=1\right)=0.5*0.8*0.8*0.5=0.16 }" title="\LARGE {\color{Gray} P\left(C=+|G=1,H=0,T=1\right)=0.5*0.8*0.8*0.5=0.16 }" />
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=-|G=1,H=0,T=1\right)=0.5*0.3*0.1*0.5=0.0075 }" title="\LARGE {\color{Gray} P\left(C=-|G=1,H=0,T=1\right)=0.5*0.3*0.1*0.5=0.0075 }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=+|G=1,H=0,T=1\right)=0.5*0.8*0.8*0.5=0.16 }" title="\LARGE {\color{Black} P\left(C=+|G=1,H=0,T=1\right)=0.5*0.8*0.8*0.5=0.16 }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=-|G=1,H=0,T=1\right)=0.5*0.3*0.1*0.5=0.0075 }" title="\LARGE {\color{Black} P\left(C=-|G=1,H=0,T=1\right)=0.5*0.3*0.1*0.5=0.0075 }" />
         </p>
         <div style="position:absolute; bottom:180px; right: 100px; padding: 5px; border:solid gray 1px">
           POSITIVE
@@ -295,8 +307,8 @@
         </p>
         <p>
           "I hate doing the dishes."
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=+|G=0,H=1,T=1\right)=0.5*0.2*0.2*0.5=0.01 }" title="\LARGE {\color{Gray} P\left(C=+|G=0,H=1,T=1\right)=0.5*0.2*0.2*0.5=0.01 }" />
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=-|G=0,H=1,T=1\right)=0.5*0.7*0.9*0.5=0.1575 }" title="\LARGE {\color{Gray} P\left(C=-|G=0,H=1,T=1\right)=0.5*0.7*0.9*0.5=0.1575 }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=+|G=0,H=1,T=1\right)=0.5*0.2*0.2*0.5=0.01 }" title="\LARGE {\color{Black} P\left(C=+|G=0,H=1,T=1\right)=0.5*0.2*0.2*0.5=0.01 }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=-|G=0,H=1,T=1\right)=0.5*0.7*0.9*0.5=0.1575 }" title="\LARGE {\color{Black} P\left(C=-|G=0,H=1,T=1\right)=0.5*0.7*0.9*0.5=0.1575 }" />
         </p>
         <div style="position:absolute; bottom:180px; right: 100px; padding: 5px; border:solid gray 1px">
           NEGATIVE
@@ -318,8 +330,8 @@
         </p>
         <p>
           "I ate cookies."
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=+|G=0,H=0,T=0\right)=0.5*0.2*0.8*0.5=0.04}" title="\LARGE {\color{Gray} P\left(C=+|G=0,H=0,T=0\right)=0.5*0.2*0.8*0.5=0.04}" />
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C=-|G=0,H=0,T=0\right)=0.5*0.7*0.1*0.5=0.0175 }" title="\LARGE {\color{Gray} P\left(C=-|G=0,H=0,T=0\right)=0.5*0.7*0.1*0.5=0.0175 }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=+|G=0,H=0,T=0\right)=0.5*0.2*0.8*0.5=0.04}" title="\LARGE {\color{Black} P\left(C=+|G=0,H=0,T=0\right)=0.5*0.2*0.8*0.5=0.04}" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=-|G=0,H=0,T=0\right)=0.5*0.7*0.1*0.5=0.0175 }" title="\LARGE {\color{Black} P\left(C=-|G=0,H=0,T=0\right)=0.5*0.7*0.1*0.5=0.0175 }" />
         </p>
         <div style="position:absolute; bottom:150px; right: 100px; padding: 5px; border:solid gray 1px">
           DON'T KNOW (not confident)
@@ -336,7 +348,7 @@
           </li>
           <li>
             Use sum of log probabilities. (OK, since log is monotonic)
-            <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" title="\LARGE {\color{Gray} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" />
+            <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" title="\LARGE {\color{Black} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" />
           </li>
         </ul>
         <p>
@@ -357,11 +369,11 @@
         </p>
         <p>
           <b>Entropy</b> is a measure of unpredictability. Given a set S, the entropy is 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" title="\LARGE {\color{Gray} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" title="\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" />
         </p>
         <p>
           <b>Information gain</b> tells us the <em>improvement</em> in the entropy of a set S by splitting it into k small subsets. 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" title="\LARGE {\color{Gray} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" title="\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" />
           eg. split into "positive" and "negative" categories
         </p>
       </article>
@@ -378,9 +390,9 @@
         </p>
         <p>
           The entropy of a boolean distribution (a Bernoulli) is
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Gray} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" title="\LARGE {\color{Gray} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" title="\LARGE {\color{Black} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" />
           Information gain of a particular word is 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?{\color{Gray} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" title="{\color{Gray} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" />
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?{\color{Black} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" title="{\color{Black} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" />
           <br>
           <em>
             If I split my tweets into two sets (+ve/-ve), which words am I most likely to see in one

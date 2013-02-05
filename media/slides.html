@@ -377,13 +377,16 @@
       <article>
         <h3>Entropy</h3>
         <p>
-          <b>Entropy</b> is a measure of unpredictability. Given a set S, the entropy is 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" title="\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" />
+          <b>Entropy</b> is a measure of unpredictability in a set.
+        </p>
+        <p class="indent-more">
+          E.g. flipping a fair (high entropy) vs biased coin (lower entropy)
         </p>
         <p>
           <b>Information gain</b> tells us the <em>improvement</em> in the entropy of a set S by splitting it into k small subsets. 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" title="\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" />
-          eg. split into "positive" and "negative" categories
+        </p>
+        <p class="indent-more">
+          E.g. split into "positive" and "negative" categories
         </p>
       </article>
 
@@ -397,16 +400,30 @@
         <p>
           So: pick features with the <b>highest</b> information gain.
         </p>
+      </article>
+      <article>
+        <h3>Advanced: Some math</h3>
+        <p>
+          The entropy of a set S is
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" title="\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" />
+        </p>
+        <p>
+          Meanwhile, the information gain by splitting S into k subsets is
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" title="\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" />
+        </p>
+      </article>
+      <article>
+        <h3>Advanced: More math</h3>
         <p>
           The entropy of a boolean distribution (a Bernoulli) is
           <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" title="\LARGE {\color{Black} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" />
           Information gain of a particular word is 
           <img class="eqn" src="http://latex.codecogs.com/png.latex?{\color{Black} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" title="{\color{Black} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" />
           <br>
-          <em>
+          <i>
             If I split my tweets into two sets (+ve/-ve), which words am I most likely to see in one
             but not in the other?
-          </em>
+          </i>
           </ul>
         </p>
       </article>

@@ -1,7 +1,6 @@
 import sys
 import re
-import numpy as np
-from numpy import log
+import math
 
 from Vector import Vector
 
@@ -58,7 +57,7 @@ def info_bernuilli(p):
     @args:
         p --> probability p in Bernuilli(p)
     """
-    return -p*np.log(p)-(1-p)*np.log(1-p)
+    return -p*math.log(p)-(1-p)*math.log(1-p)
 
 # 250 features with highest info gain
 def select_features():

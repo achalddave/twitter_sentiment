@@ -1,7 +1,6 @@
 import sys
 import re
-import numpy as np
-from numpy import log
+import math
 
 from Vector import Vector
 
@@ -24,7 +23,7 @@ def sanitize(text):
         1. split a string into a list of words
         2. remove all @ handles
         3. remove all hash tags
-        4. remove all liks
+        4. remove all links
         5. remove all stopwords
         6. throw away punctuation, except smiley faces
         7. make the final vector of words a set
@@ -58,7 +57,7 @@ def info_bernuilli(p):
     @args:
         p --> probability p in Bernuilli(p)
     """
-    return -p*np.log(p)-(1-p)*np.log(1-p)
+    return -p*math.log(p)-(1-p)*math.log(1-p)
 
 # 250 features with highest info gain
 def select_features():
@@ -161,13 +160,13 @@ class NB(object):
             cls --> a string, "+" or "-". determines CPD to use
             sanitized_tweet --> a set of words in the tweet
         """
-        p = log(self.priors[cls])
+        p = math.log(self.priors[cls])
         cpd = self.cpds[cls]
         for feature in self.features:
             if feature in sanitized_tweet:
-                p += log(cpd[feature])
+                p += math.log(cpd[feature])
             else:
-                p += log(1 - cpd[feature])
+                p += math.log(1 - cpd[feature])
         return p
 
 
@@ -187,9 +186,9 @@ class NB(object):
             posteriors[cls] = self.posterior(cls, tweet)
         pos = posteriors["+"]
         neg = posteriors["-"]
-        if pos > log(2) + neg:
+        if pos > math.log(2) + neg:
             return "+"
-        elif neg > log(3) + pos:
+        elif neg > math.log(3) + pos:
             return "-"
         else:
             return "~"

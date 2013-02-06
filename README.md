@@ -4,4 +4,4 @@ If you get an error saying "AttributeError: 'module' object has no attribute 'Ap
 
 1) try running "sudo apt-get uninstall twitter" to remove the other python package that is called twitter
 
-2) run "git install submodule"
+2) run "git submodule update --init"

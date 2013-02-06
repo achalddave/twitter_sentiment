@@ -34,14 +34,14 @@ def sanitize(text):
     """
     words = text.split()
     words = [word for word in words if "@" not in word]
-    words = [word for word in words if "#" not in word] 
-    words = [word.lower() for word in words if not word.startswith("http")] 
+    words = [word for word in words if "#" not in word]
+    words = [word.lower() for word in words if not word.startswith("http")]
     words = [word.lower() for word in words if word not in stopwords]
     text = " ".join(words)
     words = re.findall("\w+", text)
     words.extend(re.findall("['\-/()=:;]['\-/()=:;]+", text))
-    words = {word for word in words if 
-                        len(word) > 1 
+    words = {word for word in words if
+                        len(word) > 1
                         and word.lower() != "rt"}
     return words
 
@@ -63,7 +63,7 @@ def info_bernuilli(p):
 # 250 features with highest info gain
 def select_features():
     """
-    Selects 250 words with the highest information gain. Refer to 
+    Selects 250 words with the highest information gain. Refer to
     slides for details
     """
 
@@ -108,13 +108,13 @@ def select_features():
 
 #==================
 
-# 
+#
 # HEY LOOK AT ME I AM THE MOST INTERESTING PART
 #
 
 
 class NB(object):
-    
+
     def __init__(self):
         """
         Should do:
@@ -132,7 +132,7 @@ class NB(object):
             learn the CPD for a given class
 
         @args:
-            cls --> a string, "+" or "-" 
+            cls --> a string, "+" or "-"
             tweets --> an iterable of tweets (a file object, list, etc)
         """
 
@@ -152,9 +152,9 @@ class NB(object):
     def classify(self, tweet):
         """
         Given a text, classify its sentiment. Picks the class with the largest posterior.
-      
-        However, if we are not confident, ie if not P(C1|tweet) < 2*P(C2|tweet), 
-        then we refuse to classify, and return neutral, "~". 
+
+        However, if we are not confident, ie if not P(C1|tweet) < 2*P(C2|tweet),
+        then we refuse to classify, and return neutral, "~".
 
         @args:
             tweet --> a string, text of the tweet
@@ -196,7 +196,7 @@ def main():
         select_features()
     else:
         if len(sys.argv) < 2:
-            print "Not enough args. Provide text as argument")
+            print "Not enough args. Provide text as argument"
             return -1
         classify_text(n, sys.argv[1])
 

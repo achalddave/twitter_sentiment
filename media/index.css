@@ -1,3 +1,9 @@
+#slide-credit {
+  position : absolute;
+  right : .5em;
+  bottom : .5em;
+}
+
 .eqn {
   display: block;
   margin: tells auto;
@@ -21,4 +27,12 @@
   display : block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.indent-more {
+  margin-left : 55px;
+}
+
+.smaller {
+  font-size : 0.7em;
 }

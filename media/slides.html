@@ -47,25 +47,54 @@
       
       <!-- Your slides (<article>s) go here. Delete or comment out the
            slides below. -->
+
+      <article>
+        <h1>
+          Replace Your Brain
+        </h1>
+        <br />
+        <h3>AI Workshop</h3>
+        <p id="slide-credit" class="smaller">Slides originally by Allen Chen, Akihiro Matsukawa</p>
+        <p>Achal Dave, Sharad Vikram, Peter Gao</p>
+      </article>
+      <article>
+        <h1>
+          What is Artificial Intelligence?
+        </h1>
+      </article>
+
+      <article>
+        <h3>What is Artificial Intelligence?</h3>
+        <p>Not just about making human-like robots
+          <span class="indent-more smaller" style="display: block">
+            (But that is an awesome part of it)
+          </span>
+        </p>
+        <br />
+        <p>
+          Basically, giving intelligence to computers
+        </p>
+        <ul>
+          <li>
+            Playing tic tac toe, chess, and of course, Pacman
+          </li>
+          <li>
+            Self-driving cars
+          </li>
+          <li>
+            Lots, lots more
+          </li>
+        </ul>
+      </article>
         
       <article>
         <h1>
-          Sentiment Analysis using 
-          <br>
-          a Naive Bayes Classifier
+          Today: 
         </h1>
-        <br>
-        <p>
-          
-          <br>
-          Hackers@Berkeley
-        </p>
-        <p>
-          Slides originally by Allen Chen, Akihiro Matsukawa
-        </p>
-	<p>
-	  Revised by Peter Gao, Achal Dave
-	</p>
+        <br />
+        <h3>Sentiment Analysis using 
+          a Naive Bayes Classifier
+        </h3>
       </article>
       
       <article>
@@ -254,14 +283,19 @@
           Naive Bayes Classifier - Inference
         </h3>
         <p>
-          Ok, I have a vector of features. <b>How do I pick the class?</b>
+          So you have the values of features; how do you pick the class?
         </p>
         <p>
-          Answer: Pick the class c with the highest
+          Pick the class c with the highest probability given these features!
         </p>
+        <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=c|F_{1},\ldots,F_{n}\right)}" title="\LARGE {\color{Black} P\left(C=c|F_{1},\ldots,F_{n}\right)}" />
+      </article>
+      <article>
         <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C=c|F_{1},\ldots,F_{n}\right)}" title="\LARGE {\color{Black} P\left(C=c|F_{1},\ldots,F_{n}\right)}" />
         <p>
           How do I find this conditonal probability?
+          <p class="indent-more">Some seemingly hard math</p>
+        </p>
           <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{P\left(F_{1},\ldots,F_{N}\right)}}" />
           <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" title="\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\frac{P\left(C,F_{1},\ldots,F_{N}\right)}{\sum_{C}P\left(C,F_{1},\ldots,F_{N}\right)}}" />
           <img class="eqn-left" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" title="\LARGE {\color{Black} P\left(C|F_{1},\ldots,F_{n}\right)=\alpha P\left(C,F_{1},\ldots,F_{N}\right)}" />
@@ -274,7 +308,7 @@
           Our Classifier
         </h3>
         <p>
-          We will build a classifier with two classes, and "bag-of-words" style <b>binary features</b>. 
+          We will build a classifier with two classes and <b>binary features</b>. 
         </p>
         <p>
           <center>
@@ -297,7 +331,7 @@
           Our Classifier
         </h3>
         <p>
-          We will be building a Naive Bayes classifier with two classes and <b>binary features</b>.
+          We will build a classifier with two classes and <b>binary features</b>. 
         </p>
         <p>
           <center>
@@ -320,7 +354,7 @@
           Our Classifier
         </h3>
         <p>
-          We will be building a Naive Bayes classifier with two classes and <b>binary features</b>.
+          We will build a classifier with two classes and <b>binary features</b>. 
         </p>
         <p>
           <center>
@@ -343,16 +377,18 @@
         </h3>
         <ul>
           <li>
-            When we have a lot of features, multiplying probabilities creates underflow problems.
+            When we have a lot of features, multiplying probabilities gives you super small numbers.
           </li>
           <li>
-            Use sum of log probabilities. (OK, since log is monotonic)
+            Instead, use sum of log probabilities. 
             <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" title="\LARGE {\color{Black} P\left(C\right)\prod_{F}P\left(F|C\right)\rightarrow\log{P\left(C\right)}+\sum_F{\log{P\left(F_i|C\right)}}}" />
           </li>
         </ul>
-        <p>
-          <h3> Let's build it! DEMO. </h3>
-        </p>
+      </article>
+      <article>
+        <h1> Let's build it! </h1>
+        <br />
+        <h3><a href="https://github.com/achalddave/twitter_sentiment">github.com/achalddave/twitter_sentiment</a>
       </article>
 
       <article>
@@ -366,14 +402,20 @@
         <p>
           Answer: we will use <b>entropy</b> and <b>information gain</b>
         </p>
+      </article>
+      <article>
+        <h3>Entropy</h3>
         <p>
-          <b>Entropy</b> is a measure of unpredictability. Given a set S, the entropy is 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" title="\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" />
+          <b>Entropy</b> is a measure of unpredictability in a set.
+        </p>
+        <p class="indent-more">
+          E.g. flipping a fair (high entropy) vs biased coin (lower entropy)
         </p>
         <p>
           <b>Information gain</b> tells us the <em>improvement</em> in the entropy of a set S by splitting it into k small subsets. 
-          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" title="\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" />
-          eg. split into "positive" and "negative" categories
+        </p>
+        <p class="indent-more">
+          E.g. split into "positive" and "negative" categories
         </p>
       </article>
 
@@ -387,16 +429,30 @@
         <p>
           So: pick features with the <b>highest</b> information gain.
         </p>
+      </article>
+      <article>
+        <h3>Advanced: Some math</h3>
+        <p>
+          The entropy of a set S is
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" title="\LARGE {\color{Black} H\left(S\right)=\sum_{i}p_{i}\log\left(p_{i}\right) }" />
+        </p>
+        <p>
+          Meanwhile, the information gain by splitting S into k subsets is
+          <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" title="\LARGE {\color{Black} Gain\left(S,S_{1},\ldots,S_{k}\right)=H\left(S\right)-\sum_{k}\frac{\left|S_{k}\right|}{\left|S\right|}H\left(S_{k}\right) }" />
+        </p>
+      </article>
+      <article>
+        <h3>Advanced: More math</h3>
         <p>
           The entropy of a boolean distribution (a Bernoulli) is
           <img class="eqn" src="http://latex.codecogs.com/png.latex?\LARGE {\color{Black} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" title="\LARGE {\color{Black} H\left(p\right)=p\log p+\left(1-p\right)\log\left(1-p\right) }" />
           Information gain of a particular word is 
           <img class="eqn" src="http://latex.codecogs.com/png.latex?{\color{Black} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" title="{\color{Black} H\left(\frac{tweets\ word=T}{tweets}\right)-\frac{+tweets}{tweets}H\left(\frac{+tweets\ word=T}{+tweets}\right)-\frac{-tweets}{tweets}H\left(\frac{-tweets\ word=T}{-tweets}\right) }" />
           <br>
-          <em>
+          <i>
             If I split my tweets into two sets (+ve/-ve), which words am I most likely to see in one
             but not in the other?
-          </em>
+          </i>
           </ul>
         </p>
       </article>
